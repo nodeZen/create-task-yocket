@@ -1,0 +1,44 @@
+.custom-control-input{
+    height:30px;
+}
+
+.edit-button{
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.delete-icon-container{
+    .delete-image{
+        height:40px;
+        width:40px;
+    }
+}
+
+.display-priority{
+    text-transform: capitalize;
+}
+
+.priority-badge{
+    text-transform: capitalize;
+    height:30px;
+    line-height: 30px;
+    color: white;
+    font-size: small;
+    padding: 0px 15px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.high-priority-badge{
+    background-color: #aa1409;
+}
+
+.medium-priority-badge{
+    background-color: #edb710;
+    color: black;
+}
+
+.low-priority-badge{
+    background-color: #4b7e35;
+}
