@@ -44,7 +44,7 @@ const Register = () => {
   return (
     <Fragment>
       <form onSubmit={onSubmitForm}>
-        <h1 className="text-center my-5">Task Creator Register</h1>
+        <h1 className="text-center my-5">Create a Task Register</h1>
         <div className="register-controls">
           <div className="row">
             <div className="col-md-6 nopadding-left">
