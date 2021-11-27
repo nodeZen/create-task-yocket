@@ -23,7 +23,6 @@ export const getAllTasks = () => dispatch => {
     })
     .then(response => {
       if (response && Array.isArray(response.data.completeTasks)) {
-        console.log(response.data.completeTasks, "Response");
         if (!response.data.completeTasks.length) {
           dispatch(setInfoMessage("No Tasks Created..!!!"));
         } 
@@ -96,7 +95,6 @@ export const fetchGroupedTasks = createSelector(
     if(Array.isArray(taskList) && taskList.length){
       taskList.forEach(task=>{
         const diff = getTense(task.deadline);
-        console.log(diff);
         switch(diff){
           case 1: groupedTasks["upcomingTasks"].push(task);
                   break;

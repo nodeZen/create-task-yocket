@@ -12,7 +12,6 @@ import { covertCamlinToNormal } from "../../../../utils/utils";
 const TaskList = () => {
   const dispatch = useDispatch();
   const groupedTasks = useSelector(state => fetchGroupedTasks(state));
-  console.log(groupedTasks, "Grouped Tasks");
   const infoMessage = useSelector(state => state.task.infoMessage);
   useEffect(() => {
     dispatch(getAllTasks());
@@ -40,9 +39,9 @@ const TaskList = () => {
   }
   return (
     <div className="my-5 px-5">
-      {Object.keys(groupedTasks).map(key => {
+      {Object.keys(groupedTasks).map((key,index) => {
         return (
-          <Accordion defaultActiveKey="0">
+          <Accordion defaultActiveKey="0" key={index}>
             <Accordion.Item>
               <Accordion.Header>
                 <h2 className={getHeaderClass(key)}>{covertCamlinToNormal(key)}</h2>
