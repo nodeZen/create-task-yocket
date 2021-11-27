@@ -19,7 +19,7 @@ userRoutes.post("/register", async (req, res, next) => {
       res.json({ token });
     })
     .catch((err) => {
-      console.log(err.message);
+      res.send({err});
     });
 });
 
@@ -30,24 +30,24 @@ userRoutes.post("/login", async (req, res, next) => {
     if (!existingUser) return res.json({ userExists: false });
     const isPasswordMatched = await bcrypt.compare(password, existingUser.password);
     if (!isPasswordMatched) return res.json({ isLoggedIn: false });
-    const token = jwtGenerator(existingUser.email);
-    return res.json({ token });
+    const token = await jwtGenerator(existingUser.email);
+    res.json({ token });
   } catch (err) {
-    res.status(500).send(err);
+    res.send({err})
   }
 });
 
 userRoutes.get("/user-data",authorize, async (req, res, next) => {
   try {
-    const { email:reqEmail } = req.body;
-    const existingUser = await userModel.findOne({ reqEmail });
+    const reqEmail  = req.user;
+    const existingUser = await userModel.findOne({ email:reqEmail });
     if (!existingUser) return res.json({ userExists: false });
     const {firstName, lastName, email} = existingUser;
     return res.json({ 
       firstName, lastName, email
      });
   } catch (err) {
-    res.status(500).send(err);
+  res.send(err)
   }
 });
 

@@ -27,7 +27,6 @@ const Tasks = () => {
       isCompleted: false,
       priority,
     };
-    console.log(taskData, "Indise UI");
     if (
       description.length &&
       name.length &&
@@ -39,6 +38,7 @@ const Tasks = () => {
       setDescription("");
       setDeadline("");
       setPriority("");
+      setErrMessage("");
     } else {
       setErrMessage("Please enter data in all the fields");
     }
@@ -54,7 +54,6 @@ const Tasks = () => {
     setDeadline(e.target.value);
   };
   const setPriorityHandler = (e) => {
-    console.log(e.target.value);
     setPriority(e.target.value);
   };
   return (
@@ -68,7 +67,6 @@ const Tasks = () => {
               placeholder="Task Name"
               value={name}
               onChange={setNameHandler}
-              name
             />
           </div>
           <div className=" col-md-6">
@@ -97,7 +95,7 @@ const Tasks = () => {
           </div>
           <div className="col-md-6">
             <select onChange={setPriorityHandler} className="form-control">
-              <option disabled selected value={priority}>
+              <option disabled selected>
                 {" "}
                 -- Select Priority --{" "}
               </option>

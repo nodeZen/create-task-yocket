@@ -12,13 +12,14 @@ export const authSlice = createSlice({
       state.errMessage = action.payload;
     },
     setUserData: (state, action) => {
-      console.log(action.payload, "Payload");
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
       state.email = action.payload.email;
     },
     resetAuth: (state)=>{
-      state = authState;
+      Object.keys(state).forEach(key=>{
+        state[key] = authState[key];
+      })
     }
   },
 });

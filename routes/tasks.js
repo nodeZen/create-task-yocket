@@ -51,7 +51,7 @@ taskRoutes.post("/add-task", authorize, async (req, res, next) => {
         });
     }
   } catch (err) {
-    return res.status(500).send(err);
+    return res.json({err});
   }
 });
 
@@ -74,7 +74,7 @@ taskRoutes.delete("/delete-task/:id", authorize, async (req, res, next) => {
       res.json({});
     }
   } catch (err) {
-    res.status(500).send(err);
+    return res.json({err});
   }
 });
 
@@ -92,7 +92,7 @@ taskRoutes.patch("/update-task/:id", authorize, async (req, res, next) => {
       res.json({});
     }
   } catch (err) {
-    res.status(500).send(err);
+    return res.json({err});
   }
 });
 

@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 const cors = require("cors");
-
+require("dotenv").config();
 const user = require("./routes/user");
 const tasks = require("./routes/tasks");
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use("/user",user);
 app.use("/tasks",tasks);
 app.listen(port,()=>{
-    mongoose.connect('mongodb://localhost:27017/createtask').then(()=>{
+    mongoose.connect(process.env.MONGO_URI).then(()=>{
         console.log("Connected");
-    });
+    })
 })

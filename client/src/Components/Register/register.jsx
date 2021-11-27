@@ -27,7 +27,7 @@ const Register = () => {
     e.preventDefault();
     const body = { firstName, lastName, email, password };
     if (validator.isEmail(email)) {
-      if (firstName.length && password.length) {
+      if (firstName && password) {
         dispatch(registerService(body));
       } else {
         dispatch(setErrorMessage("Please fill in all fields"));
@@ -86,12 +86,12 @@ const Register = () => {
               onChange={onChangeInputs}
             ></input>
             {errMessage && (
-              <div className="my-2 error-message">{errMessage}</div>
+              <div className="my-2 error-message p-0">{errMessage}</div>
             )}
             <button className="btn btn-success btn-block" type="submit">
               Register
             </button>
-            <div className="my-2">
+            <div className="my-2 p-0">
               Already have an account?{" "}
               <Link to="/login" onClick={clearErrorMessage}>
                 Login

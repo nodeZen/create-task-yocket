@@ -7,7 +7,7 @@ module.exports = async (req, res, next)=>{
         if(!token){
             return res.status(403).json({message:"Not Authorized"});
         }
-        const payload = jwt.verify(token,process.env.jwtSecret);
+        const payload = await jwt.verify(token,process.env.jwtSecret);
         req.user = payload.user;
         next();
     } catch (error) {

@@ -42,6 +42,8 @@ export const loginService = (body) => (dispatch) => {
     });
 };
 
+
+
 export const registerService = (body) => (dispatch) => {
   return axios
     .post("/user/register", body)
@@ -50,7 +52,7 @@ export const registerService = (body) => (dispatch) => {
         localStorage.setItem("token", response.data.token);
         dispatch(setAuthentication(true));
       } else if (response.data.userExists) {
-        dispatch(setErrorMessage("User Exists..!!!"));
+        dispatch(setErrorMessage("User already Exists. Please login"));
       }
     })
     .catch((err) => {
@@ -68,7 +70,6 @@ export const getUserData = () => (dispatch) => {
     .then((response) => {
       if (response.data) {
         const { firstName, lastName, email } = response.data;
-        console.log(response.data,"Response");
         dispatch(
           setUserData({
             firstName,
@@ -77,5 +78,7 @@ export const getUserData = () => (dispatch) => {
           })
         );
       }
+    }).catch(err=>{
+      console.log(err);
     });
 };

@@ -26,7 +26,6 @@ export const getAllTasks = () => (dispatch) => {
           ...task,priorityFlag: getPriorityFlag(task.priority)
         }));
         tasks.sort((a,b)=>a.priorityFlag-b.priorityFlag);
-        console.log(tasks);
         if(!response.data.completeTasks.length) {
           dispatch(setInfoMessage("No Tasks Created..!!!"));
         }else{

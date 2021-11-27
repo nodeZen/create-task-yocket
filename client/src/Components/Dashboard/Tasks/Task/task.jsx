@@ -194,11 +194,11 @@ const Task = ({
               <Accordion.Body>
                 {editData()}
                 <div className="mx-5">
-                  {Object.keys(displayProps).map((prop) => {
+                  {Object.keys(displayProps).map((prop,index) => {
                     if (prop !== "name") {
                       if (prop === "isCompleted") {
                         return (
-                          <div className="row">
+                          <div className="row" key={index}>
                             <div className="col-md-2">
                               <h5>Completed?</h5>
                             </div>
@@ -212,14 +212,14 @@ const Task = ({
                               />
                               <label
                                 className="custom-control-label"
-                                for={_id}
+                                htmlFor={_id}
                               />
                             </div>
                           </div>
                         );
                       }
                       return (
-                        <div className="row">
+                        <div className="row" key={index}>
                           <div className="col-md-2">
                             <h5>{`${covertCamlinToNormal(prop)}: `}</h5>
                           </div>

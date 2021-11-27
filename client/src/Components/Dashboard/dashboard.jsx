@@ -6,6 +6,7 @@ import { getUserData } from "../../services/auth-service";
 import Tasks from "../Dashboard/Tasks/tasks";
 import ConfirmationBox from "../Confirmation Box/confirmation-box";
 import logoutIcon from "../../assets/logout-icn.svg";
+
 const Dashboard = () => {
   const name = useSelector(
     (state) => {
@@ -31,9 +32,9 @@ const Dashboard = () => {
   };
 
   const logoutHandler = () => {
+    dispatch(resetAuth());
     localStorage.removeItem("token");
     dispatch(setAuthentication(false));
-    dispatch(resetAuth());
     hideModalHandler();
   };
 

@@ -14,7 +14,6 @@ const Register = () => {
   });
 
   const errMessage = useSelector((state) => state.auth.errMessage);
-
   const { email, password } = inputs;
 
   const onChangeInputs = (e) => {
