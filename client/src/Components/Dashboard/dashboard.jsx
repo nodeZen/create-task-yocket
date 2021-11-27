@@ -3,23 +3,21 @@ import { useSelector, useDispatch } from "react-redux";
 import "./dashboard.scss";
 import { setAuthentication, resetAuth } from "../../store/auth-slice";
 import { getUserData } from "../../services/auth-service";
-import Tasks from "../Dashboard/Tasks/tasks";
+import AddTask from "./Tasks/add-task";
+import TaskList from "./Tasks/TaskList/task-list";
 import ConfirmationBox from "../Confirmation Box/confirmation-box";
 import logoutIcon from "../../assets/logout-icn.svg";
 
 const Dashboard = () => {
-  const name = useSelector(
-    (state) => {
-      return `${state.auth.firstName || ""} ${state.auth.lastName || ""}`
-    }
-  );
+  const name = useSelector(state => {
+    return `${state.auth.firstName || ""} ${state.auth.lastName || ""}`;
+  });
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const modalHeading = "Logout";
   const modalMessage = "Are You sure You want to Logout?";
 
-  
-  const modalHandler = (boolean) => {
+  const modalHandler = boolean => {
     setShowModal(boolean);
   };
 
@@ -53,8 +51,9 @@ const Dashboard = () => {
         </div>
       </div>
       <h2 className="my-3 text-center">Hi {name}</h2>
-      <div className="ml-5 mt-5">
-        <Tasks />
+      <div className="mt-5">
+        <AddTask />
+        <TaskList />
       </div>
       <ConfirmationBox
         showModal={showModal}

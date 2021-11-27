@@ -1,6 +1,6 @@
 const taskState={
     taskList: [],
-    infoMessage:[],
+    infoMessage:"",
   }
 
 export default taskState;

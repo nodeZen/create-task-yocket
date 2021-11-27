@@ -1,31 +1,26 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllTasks, addTask } from "../../../services/task-service";
-import Task from "./Task/task";
-import "./tasks.scss";
+import { addTask, fetchGroupedTasks } from "../../../services/task-service";
+import "./add-task.scss";
 import { useState } from "react";
 import addIcon from "../../../assets/add-icn.svg";
-const Tasks = () => {
+const AddTask = () => {
   const dispatch = useDispatch();
-  const allTasks = useSelector((state) => state.task.taskList);
-  const infoMessage = useSelector((state) => state.task.infoMessage);
+  const groupedTasks = useSelector(state => fetchGroupedTasks(state));
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState("");
   const [priority, setPriority] = useState("");
   const [errMessage, setErrMessage] = useState("");
-  useEffect(() => {
-    dispatch(getAllTasks());
-  }, [dispatch]);
 
-  const addTaskHandler = (e) => {
+  const addTaskHandler = e => {
     e.preventDefault();
     const taskData = {
       name,
       description,
       deadline,
       isCompleted: false,
-      priority,
+      priority
     };
     if (
       description.length &&
@@ -44,21 +39,21 @@ const Tasks = () => {
     }
   };
 
-  const setNameHandler = (e) => {
+  const setNameHandler = e => {
     setName(e.target.value);
   };
-  const setDescriptionHandler = (e) => {
+  const setDescriptionHandler = e => {
     setDescription(e.target.value);
   };
-  const setDeadlineHandler = (e) => {
+  const setDeadlineHandler = e => {
     setDeadline(e.target.value);
   };
-  const setPriorityHandler = (e) => {
+  const setPriorityHandler = e => {
     setPriority(e.target.value);
   };
   return (
-    <>
-      <form className="todo-form row" onSubmit={addTaskHandler}>
+    <div className="container pl-5">
+      <form className="row" onSubmit={addTaskHandler}>
         <div className="row col-md-6">
           <div className="col-md-6">
             <input
@@ -79,22 +74,22 @@ const Tasks = () => {
             />
           </div>
         </div>
-        <div className="row col-md-5">
+        <div className="row col-md-5 ml-2">
           <div className="col-md-6">
             <input
               placeholder="Deadline"
               className="form-control"
               type="text"
-              onFocus={(e) => (e.target.type = "date")}
+              onFocus={e => (e.target.type = "date")}
               id="date"
-              onBlur={(e) => (e.target.type = "text")}
+              onBlur={e => (e.target.type = "text")}
               value={deadline}
               onChange={setDeadlineHandler}
-              min={new Date().toISOString().split('T')[0]}
+              min={new Date().toISOString().split("T")[0]}
             />
           </div>
           <div className="col-md-6">
-            <select onChange={setPriorityHandler} className="form-control">
+            <select onChange={setPriorityHandler} className="form-control priority-select">
               <option disabled selected>
                 {" "}
                 -- Select Priority --{" "}
@@ -105,24 +100,13 @@ const Tasks = () => {
             </select>
           </div>
         </div>
-        <div className="col-md-1 add-task">
+        <div className="col-md-1 add-task ml-4">
           <input type="image" src={addIcon} alt="Add Task" />
         </div>
         {errMessage && <label className="error-message">{errMessage}</label>}
       </form>
-      <div className="containern ml-5">
-        {allTasks.length ? (
-          <div className="container my-5">
-            {allTasks.map((task) => {
-              return <Task key={task._id} {...task} />;
-            })}
-          </div>
-        ) : (
-          <h1 className="text-center my-5 no-todo">{infoMessage}</h1>
-        )}
-      </div>
-    </>
+    </div>
   );
 };
 
-export default Tasks;
+export default AddTask;

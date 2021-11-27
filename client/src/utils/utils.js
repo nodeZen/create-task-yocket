@@ -31,3 +31,16 @@ export const getLocalDate = (date) => {
   }
   return "";
 };
+
+
+export const getTense=(date)=> {
+  const enteredDate = new Date(date);
+  const today = new Date();
+  let tense = 0; //present
+  enteredDate.setHours(0,0,0,0);
+  today.setHours(0,0,0,0);
+  if(enteredDate<today) tense=-1;
+  if(enteredDate>today) tense = 1;
+  return tense;
+  
+}

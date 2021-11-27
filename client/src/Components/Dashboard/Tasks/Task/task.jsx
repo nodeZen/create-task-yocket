@@ -182,12 +182,12 @@ const Task = ({
         no={hideModalHandler}
       />
       <div className="row">
-        <div className="col-md-10">
+        <div className="col-md-11">
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="1">
               <Accordion.Header>
                 <span>
-                  <h2>{name}</h2>
+                  <h3>{name}</h3>
                 </span>
                 <span className={`priority-badge ml-3 ${getPriorityBadgeClass(taskPriority)}`}>{getPriorityBadgeValue(taskPriority)}</span>
               </Accordion.Header>
@@ -234,7 +234,7 @@ const Task = ({
             </Accordion.Item>
           </Accordion>
         </div>
-        <div className="col-md-2 my-auto delete-icon-container">
+        <div className="col-md-1 my-auto delete-icon-container">
           <input
             type="image"
             src={deleteIcon}
