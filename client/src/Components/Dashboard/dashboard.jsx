@@ -45,7 +45,7 @@ const Dashboard = () => {
       <div className="header-bar row mt-3">
         <h1 className="col-md-11">Create a Task</h1>
         <div className="col-md-1">
-          <span onClick={showModalHandler} className="logout-button">
+          <span onClick={showModalHandler} className="logout-button ml-5">
             <img src={logoutIcon} alt="Logout"></img>
           </span>
         </div>
