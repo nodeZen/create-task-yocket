@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addTask, fetchGroupedTasks } from "../../../services/task-service";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../../services/task-service";
 import "./add-task.scss";
 import { useState } from "react";
 import addIcon from "../../../assets/add-icn.svg";
 const AddTask = () => {
   const dispatch = useDispatch();
-  const groupedTasks = useSelector(state => fetchGroupedTasks(state));
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState("");
